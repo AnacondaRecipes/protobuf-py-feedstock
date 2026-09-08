@@ -36,9 +36,14 @@ test:
 about:
   home: https://github.com/bufbuild/protobuf-py
   summary: Idiomatic Protocol Buffers for Python.
+  description: |
+    Idiomatic Protocol Buffers for Python, providing the pure-Python API and
+    typing surface for protobuf-py; the compiled implementation is provided by
+    the protobuf-py-ext package.
   doc_url: https://protobufpy.com/
   dev_url: https://github.com/bufbuild/protobuf-py
   license: Apache-2.0
+  license_family: Apache
   license_file: LICENSE
 
 extra:
