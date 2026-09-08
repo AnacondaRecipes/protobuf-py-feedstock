@@ -1,45 +1,45 @@
-{% set name = "<PLEASE ADD PKG NAME>" %}
-{% set version = "<PLEASE ADD PKG VERSION>" %}
+{% set version = "0.4.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: protobuf-py
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: <sha256>
+  url: https://pypi.org/packages/source/p/protobuf-py/protobuf_py-{{ version }}.tar.gz
+  sha256: 9a3e424e89c75121c8c66e37349dd568893c26b4917e53ca558c68c2ee641474
 
 build:
-  number: 0
+  skip: True  # [py<310 or (osx and x86_64)]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  number: 0
 
 requirements:
   host:
     - python
+    - uv-build >=0.12.1,<0.13
     - pip
   run:
     - python
+    - protobuf-py-ext ==0.4.0
+    - typing_extensions >=4.13.0
 
 test:
   imports:
-    - {{ name.replace('-', '.') }}
-  requires:
-    - pip
+    - protobuf_py
   commands:
     - pip check
+  requires:
+    - pip
+    - python
 
 about:
-  home: <PLEASE ADD HOME URL>
-  summary: <PLEASE ADD SUMMARY>
-  description: |
-    <PLEASE ADD DESCRIPTION>
-  license: <PLEASE ADD LICENSE>
-  license_family: <PLEASE ADD LICENSE_FAMILY>
-  license_file: <PLEASE_ADD_LICENSE_FILE>
-  dev_url: <PLEASE ADD DEV URL>
-  doc_url: <PLEASE ADD DOC URL>
+  home: https://github.com/bufbuild/protobuf-py
+  summary: Idiomatic Protocol Buffers for Python.
+  doc_url: https://protobufpy.com/
+  dev_url: https://github.com/bufbuild/protobuf-py
+  license: Apache-2.0
+  license_file: LICENSE
 
 extra:
   recipe-maintainers:
-    - Jrice1317
+    - imykhailov
